@@ -1,26 +1,32 @@
-#TODO: Copy resolv.conf
-
 ########################################
 ############## Packages ################
 ########################################
 
-# Remove AODP's Layers Manager.  Layers Manager will now work as a system app
-LAYERS_MANAGER := \
-	vendor/slim/prebuilt/common/etc/Layers.apk:system/app/Layers/Layers.apk
+# Remove Chromium and DUCertified
+REMOVE_PACKAGES := \
+		Gello
 
-PRODUCT_COPY_FILES := $(filter-out $(LAYERS_MANAGER),$(PRODUCT_COPY_FILES))
+PRODUCT_PACKAGES := $(filter-out $(REMOVE_PACKAGES),$(PRODUCT_PACKAGES))
+
+# Hell yeah I want root baked in
+PRODUCT_PACKAGES += \
+		su
 
 # Add wanted packages
 PRODUCT_PACKAGES += \
 		FDroid \
-		Matlog \
-		Snap \
-		LockClock \
-		htop
+		Matlog
 
 ########################################
 ############# Settings #################
 ########################################
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.debug.alloc=0 \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
 
 # Enable data roaming
 PRODUCT_PROPERTY_OVERRIDES := $(subst dataroaming=false,dataroaming=true,$(PRODUCT_PROPERTY_OVERRIDES))
@@ -29,9 +35,18 @@ PRODUCT_PROPERTY_OVERRIDES := $(subst dataroaming=false,dataroaming=true,$(PRODU
 PRODUCT_PROPERTY_OVERRIDES += \
 		fw.show_multiuserui=0
 
+PRODUCT_PROPERTY_OVERRIDES += \
+		ro.debuggable=1
+
 # Enable Root for adb and apps
 PRODUCT_PROPERTY_OVERRIDES += \
-		persist.sys.root_access=3
+    persist.sys.root_access=3
 
 # Updates overlay settings
 PRODUCT_PACKAGE_OVERLAYS += vendor/extra/overlay/common
+
+# Don't compile SystemUITests
+EXCLUDE_SYSTEMUI_TESTS := true
+
+# Enable ADB authentication
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1

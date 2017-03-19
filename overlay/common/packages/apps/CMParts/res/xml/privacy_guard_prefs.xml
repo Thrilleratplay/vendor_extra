@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen android:key="privacy_guard_manager">
+  <cyanogenmod.preference.CMSecureSettingSwitchPreference
+      android:key="privacy_guard_default"
+      android:defaultValue="true" />
+</PreferenceScreen>
