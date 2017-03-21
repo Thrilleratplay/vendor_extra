@@ -2,7 +2,7 @@
 ############## Packages ################
 ########################################
 
-# Remove Chromium and DUCertified
+# Remove Gello
 REMOVE_PACKAGES := \
 		Gello
 
@@ -31,16 +31,29 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Enable data roaming
 PRODUCT_PROPERTY_OVERRIDES := $(subst dataroaming=false,dataroaming=true,$(PRODUCT_PROPERTY_OVERRIDES))
 
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.build.type=eng;
+
 # Disable multiuser
 PRODUCT_PROPERTY_OVERRIDES += \
 		fw.show_multiuserui=0
 
-PRODUCT_PROPERTY_OVERRIDES += \
-		ro.debuggable=1
+# PRODUCT_PROPERTY_OVERRIDES += \
+# 		ro.debuggable=1
 
 # Enable Root for adb and apps
+# PRODUCT_PROPERTY_OVERRIDES += \
+#     persist.sys.root_access=3
+
+
+#ro.secure=0
+
+# Enable advanced reboot
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=3
+		persist.sys.advanced_reboot=1
+
+# PRODUCT_PROPERTY_OVERRIDES += \
+		# persist.sys.privacy_guard_default=1
 
 # Updates overlay settings
 PRODUCT_PACKAGE_OVERLAYS += vendor/extra/overlay/common
