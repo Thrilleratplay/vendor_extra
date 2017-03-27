@@ -17,6 +17,8 @@
  */
 -->
 <resources>
+  <integer name="def_screen_off_timeout">15000</integer>
+
   <!-- Default state of tap to wake -->
   <bool name="def_double_tap_to_wake">false</bool>
 
@@ -25,4 +27,7 @@
 
   <!-- No setup wizard -->
   <bool name="def_device_provisioned">true</bool>
+
+  <bool name="def_user_setup_complete">true</bool>
+
 </resources>
