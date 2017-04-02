@@ -10,8 +10,7 @@ PRODUCT_PACKAGES += \
 # Add wanted packages
 PRODUCT_PACKAGES += \
 		FDroidPrivilegedExtension \
-		FDroid \
-		Matlog
+		FDroid
 
 ########################################
 ############### Root ###################

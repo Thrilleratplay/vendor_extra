@@ -3,3 +3,5 @@
 * enabled "Privacy Guard"
 
 * change proximity wake
+
+### Check for google analytics db
